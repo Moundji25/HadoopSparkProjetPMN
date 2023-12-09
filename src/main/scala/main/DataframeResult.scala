@@ -15,7 +15,7 @@ case class DataFrameResult(val spark : SparkSession)
     }
     def Requete_2 (df :DataFrame): DataFrame = 
     {
-        df.withColumn("year",year(col("date")))
+        df.withColumn("date", to_timestamp(col("time_ref").cast("String"), "yyyyMM")).withColumn("year",year(col("date")))
     }
     def Requete_3 (df_output_full :DataFrame,df_country_classes :DataFrame ): DataFrame = 
     {
@@ -148,18 +148,7 @@ case class DataFrameResult(val spark : SparkSession)
     {
         df.filter(col("product_type") === "Services").groupBy(col("country_code")).sum("value").withColumnRenamed("sum(value)","somme_service")
     }
-    def Requete_18 (df :DataFrame): DataFrame = 
-    {
-        // faire une colonne sum pour chaque pays via une window 
-        // faire un groupBy faire sum > faire collect > récup la valeur des 100% 
-        val somme_goods_imports = df.filter(col("product_type") === "Goods").filter(col("account") === "Imports").groupBy(col("product_type")).sum("value").drop("product_type").head().get(0)
-        val somme_goods_exports = df.filter(col("product_type") === "Goods").filter(col("account") === "Exports").groupBy(col("product_type")).sum("value").drop("product_type").head().get(0)
-        
-        // faire un window pour mettre pour chaque ligne la somme pour le pays de la ligne (pour l'export et l'import)
-        // faire deux colonne : un pour import et un autre pour export > faire deux colonnes de prctg ou on divise 
-        df.filter(col("product_type") === "Services").groupBy(col("country_code")).sum("value").withColumnRenamed("sum(value)","somme_service")
-    }
-    def Requete_19 (df :DataFrame): Map[String,DataFrame]  = 
+    def Requete_18 (df :DataFrame): Map[String,DataFrame]  = 
     {
        val window_spec = Window.partitionBy(col("product_type"))
        val window_spec_2 = Window.partitionBy(col("country_code"))
@@ -176,7 +165,7 @@ case class DataFrameResult(val spark : SparkSession)
        return Map("imports_prctg_goods" -> df_goods_prctg_imports, "exports_prctg_goods" -> df_goods_prctg_exports)
     }
 
-    def Requete_20 (df :DataFrame): Map[String,DataFrame]  = 
+    def Requete_19(df :DataFrame): Map[String,DataFrame]  = 
     {
        val window_spec = Window.partitionBy(col("product_type"))
        val window_spec_2 = Window.partitionBy(col("country_code"))
@@ -193,8 +182,46 @@ case class DataFrameResult(val spark : SparkSession)
        return Map("imports_prctg_services" -> df_goods_prctg_imports, "exports_prctg_services" -> df_goods_prctg_exports)
     }
 
+    def Requete_20 (df :DataFrame, df_goods:DataFrame): DataFrame = 
+    {
+        val tmp_df = df.filter(col("product_type") === "Goods").withColumn("code_HS2", when(length(col("code")) > 2, substring(col("code"), 1, 2)).otherwise(col("code"))
+            ).groupBy("code_HS2").count().withColumnRenamed("count","nbre_de_goods")
+        
+        df_goods.join(
+                tmp_df,col("code_HS2") === col("NZHSC_Level_1_Code_HS2"),"left_outer"
+            ).drop("code_HS2")  
+    }
+
     def Requete_21 (df :DataFrame): DataFrame = 
     {
-       df.filter(col("product_type") === "Goods").withColumn("code_HS2", when(len(col("code")) > 2,substr(col("code"),0,2), col("code")) ).groupBy(col("code_HS2")).count()
+        val window_spec = Window.orderBy(desc("exported_oil_value"))
+
+        df.filter(col("code").isin("2709", "2710")).filter(col("account") === "Exports").groupBy(col("country_code")).sum("value").withColumnRenamed("sum(value)","exported_oil_value").withColumn("exports_rank_oil",rank().over(window_spec))
+    }
+
+    def Requete_22 (df :DataFrame): DataFrame = 
+    {
+        val window_spec = Window.orderBy(desc("imported_meat_value"))
+
+        df.filter(col("code").isin(
+            "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0209", "0210")).filter(
+                col("account") === "Imports").groupBy(col("country_code")).sum("value").withColumnRenamed("sum(value)","imported_meat_value").withColumn("imports_rank_meat",rank().over(window_spec))
+    }
+    
+    def Requete_23 (df :DataFrame): DataFrame = 
+    {
+        val window_spec = Window.orderBy(desc("demand_exported_tech_services"))    
+         df.filter(col("code").startsWith("A1209")).filter(
+                col("account") === "Exports").groupBy(col("country_code")).count().withColumnRenamed("count","demand_exported_tech_services").withColumn(
+                    "demand_for_exported_tech_rank", rank().over(window_spec))
+
+    }
+
+    def Requete_24_bonus (df :DataFrame, df_countries : DataFrame): DataFrame = 
+    {
+        df.join(
+            df_countries.withColumnRenamed("country_code","country_code_1"),col("country_code") === col("country_code_1"),"left_outer").drop("country_code_1").withColumn(
+                "description", concat(lit("le pays "),col("country_label"),lit(" fait un "),
+                when(col("account") === "Imports", lit("IMPORT")).otherwise(lit("EXPORT")), lit(" sur "), col("product_type")))
     }
 }
