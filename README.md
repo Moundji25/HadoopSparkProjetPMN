@@ -2,7 +2,7 @@
 ## This repository contains :
 
 - 'Code' folder : that contains a sbt structure of a scala spark project
-- 'HDFS_scripts' : that contains some scripts that will prepare for input data and folder in hadoop and will also run the scala and spark code
+- 'HDFS_scripts' : that contains some scripts that will prepare for input data and folders in Hadoop environnement and will also run the scala and spark code, Note that these must be executed with Spark, Hadoop and Java installed 
 - 'ressources' folder : that contains the input files
 - tp_scala_2.12-1.0.jar : the executable version of the project
 
