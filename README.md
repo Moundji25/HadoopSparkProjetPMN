@@ -15,3 +15,5 @@
   scala = "2.12.13"
   spark-core = "3.2.0"
   spark-sql = "3.2.0"
+  sbt 
+  hadoop
