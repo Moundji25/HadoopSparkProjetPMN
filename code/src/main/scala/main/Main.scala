@@ -65,6 +65,7 @@ object Main
         println(i+". Requete "+i)
     }
     println("24_bonus. Requete 24")
+    println("0 Sauvgarder toutes les requetes")
     println("<<<<<<<<<<<<<")
 
     // Lire l'entrée de l'utilisateur
@@ -72,30 +73,56 @@ object Main
     
     val selectedQuery: Int = input.toInt
     selectedQuery match {
-        case 1 => executeQuery1(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 2 => executeQuery2(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 3 => executeQuery3(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
-        case 4 => executeQuery4(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
-        case 5 => executeQuery5(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
-        case 6 => executeQuery6(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 7 => executeQuery7(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 8 => executeQuery8(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 9 => executeQuery9(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 10 => executeQuery10(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 11 => executeQuery11(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 12 => executeQuery12(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
-        case 13 => executeQuery13(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
-        case 14 => executeQuery14(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
-        case 15 => executeQuery15(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
-        case 16 => executeQuery16(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 17 => executeQuery17(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 18 => executeQuery18(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 19 => executeQuery19(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 20 => executeQuery20(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
-        case 21 => executeQuery21(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 22 => executeQuery22(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 23 => executeQuery23(spark,hadoopUser,utils,data_frame_result,output_full)
-        case 24 => executeQuery24(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        case 1 =>       executeQuery1(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 2 =>       executeQuery2(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 3 =>       executeQuery3(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        case 4 =>       executeQuery4(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
+        case 5 =>       executeQuery5(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+        case 6 =>       executeQuery6(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 7 =>       executeQuery7(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 8 =>       executeQuery8(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 9 =>       executeQuery9(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 10 =>       executeQuery10(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 11 =>       executeQuery11(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 12 =>       executeQuery12(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
+        case 13 =>       executeQuery13(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+        case 14 =>       executeQuery14(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        case 15 =>       executeQuery15(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        case 16 =>       executeQuery16(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 17 =>       executeQuery17(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 18 =>       executeQuery18(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 19 =>       executeQuery19(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 20 =>       executeQuery20(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+        case 21 =>       executeQuery21(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 22 =>       executeQuery22(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 23 =>       executeQuery23(spark,hadoopUser,utils,data_frame_result,output_full)
+        case 24 =>       executeQuery24(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        case 0 => {
+            executeQuery1(spark,hadoopUser,utils,data_frame_result,output_full)
+            executeQuery2(spark,hadoopUser,utils,data_frame_result,output_full)
+            executeQuery3(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+            executeQuery4(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
+            executeQuery5(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+            executeQuery6(spark,hadoopUser,utils,data_frame_result,output_full)
+            executeQuery7(spark,hadoopUser,utils,data_frame_result,output_full)
+            executeQuery8(spark,hadoopUser,utils,data_frame_result,output_full)
+            executeQuery9(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery10(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery11(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery12(spark,hadoopUser,utils,data_frame_result,output_full,services_classes)
+             executeQuery13(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+             executeQuery14(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+             executeQuery15(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+             executeQuery16(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery17(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery18(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery19(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery20(spark,hadoopUser,utils,data_frame_result,output_full,goods_classes)
+             executeQuery21(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery22(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery23(spark,hadoopUser,utils,data_frame_result,output_full)
+             executeQuery24(spark,hadoopUser,utils,data_frame_result,output_full,country_classes)
+        }
         case _ => println("Choix non valide")
     }
     }
@@ -257,6 +284,9 @@ object Main
     println("REQUETE 12 ")
     df_requete_12.show()
     df_requete_12.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_12,C1.getUrlHdfsCSV("12"))
+    utils.writeToParquet(df_requete_12,C1.getUrlHdfsParquet("12"))
   }
   def executeQuery13(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame,goods_classes:DataFrame): Unit = {
     val df_requete_13 = data_frame_result.Requete_13(output_full,goods_classes)
@@ -265,6 +295,9 @@ object Main
     println("REQUETE 13 ")
     df_requete_13.show()
     df_requete_13.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_13,C1.getUrlHdfsCSV("13"))
+    utils.writeToParquet(df_requete_13,C1.getUrlHdfsParquet("13"))
   }
   def executeQuery14(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame,country_classes:DataFrame): Unit = {
     val df_requete_14 = data_frame_result.Requete_14(output_full,country_classes)
@@ -273,6 +306,9 @@ object Main
     println("REQUETE 14 ")
     df_requete_14.show()
     df_requete_14.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_14,C1.getUrlHdfsCSV("14"))
+    utils.writeToParquet(df_requete_14,C1.getUrlHdfsParquet("14"))
   }
   def executeQuery15(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame,country_classes:DataFrame): Unit = {
     val df_requete_15 = data_frame_result.Requete_15(output_full,country_classes)
@@ -281,6 +317,9 @@ object Main
     println("REQUETE 15 ")
     df_requete_15.show()
     df_requete_15.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_15,C1.getUrlHdfsCSV("15"))
+    utils.writeToParquet(df_requete_15,C1.getUrlHdfsParquet("15"))
   }
   def executeQuery16(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val df_requete_16 = data_frame_result.Requete_16(output_full)
@@ -289,6 +328,9 @@ object Main
     println("REQUETE 16 ")
     df_requete_16.show()
     df_requete_16.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_16,C1.getUrlHdfsCSV("16"))
+    utils.writeToParquet(df_requete_16,C1.getUrlHdfsParquet("16"))
   }
   def executeQuery17(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val df_requete_17 = data_frame_result.Requete_17(output_full)
@@ -297,6 +339,9 @@ object Main
     println("REQUETE 17 ")
     df_requete_17.show()
     df_requete_17.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_17,C1.getUrlHdfsCSV("17"))
+    utils.writeToParquet(df_requete_17,C1.getUrlHdfsParquet("17"))
   }
   def executeQuery18(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val tmp_map = data_frame_result.Requete_18(output_full)
@@ -311,9 +356,18 @@ object Main
         println(" le pourcentage de goods pour les imports par pays : ")
         df_requete_18_imports_prctg_goods.show()
         df_requete_18_imports_prctg_goods.printSchema()
+       
+       val C1 = new Constants(hadoop_user) 
+        utils.writeToCSV(df_requete_18_imports_prctg_goods,C1.getUrlHdfsCSV("18"))
+        utils.writeToParquet(df_requete_18_imports_prctg_goods,C1.getUrlHdfsParquet("18"))
+
         println(" le pourcentage de goods pour les exports par pays : ")
         df_requete_18_exports_prctg_goods.show()
         df_requete_18_exports_prctg_goods.printSchema()
+
+        
+        utils.writeToCSV(df_requete_18_exports_prctg_goods,C1.getUrlHdfsCSV("18"))
+        utils.writeToParquet(df_requete_18_exports_prctg_goods,C1.getUrlHdfsParquet("18"))
   }
   def executeQuery19(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val tmp_map = data_frame_result.Requete_19(output_full)
@@ -328,9 +382,17 @@ object Main
     println(" le pourcentage de goods pour les imports par pays : ")
     df_requete_19_imports_prctg_services.show()
     df_requete_19_imports_prctg_services.printSchema()
+
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_19_imports_prctg_services,C1.getUrlHdfsCSV("19"))
+    utils.writeToParquet(df_requete_19_imports_prctg_services,C1.getUrlHdfsParquet("19"))
+
     println(" le pourcentage de goods pour les exports par pays : ")
     df_requete_19_exports_prctg_services.show()
     df_requete_19_exports_prctg_services.printSchema()
+ 
+    utils.writeToCSV(df_requete_19_exports_prctg_services,C1.getUrlHdfsCSV("19"))
+    utils.writeToParquet(df_requete_19_exports_prctg_services,C1.getUrlHdfsParquet("19"))
   }
   def executeQuery20(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame,goods_classes:DataFrame): Unit = {
     val df_requete_20 = data_frame_result.Requete_20(output_full,goods_classes)
@@ -339,6 +401,9 @@ object Main
     println("REQUETE 20 ")
     df_requete_20.show()
     df_requete_20.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_20,C1.getUrlHdfsCSV("20"))
+    utils.writeToParquet(df_requete_20,C1.getUrlHdfsParquet("20"))
   }
   def executeQuery21(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val df_requete_21 = data_frame_result.Requete_21(output_full)
@@ -347,6 +412,9 @@ object Main
     println("REQUETE 21 ")
     df_requete_21.show()
     df_requete_21.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_21,C1.getUrlHdfsCSV("21"))
+    utils.writeToParquet(df_requete_21,C1.getUrlHdfsParquet("21"))
   }
   def executeQuery22(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val df_requete_22 = data_frame_result.Requete_22(output_full)
@@ -355,6 +423,9 @@ object Main
     println("REQUETE 22 ")
     df_requete_22.show()
     df_requete_22.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_22,C1.getUrlHdfsCSV("22"))
+    utils.writeToParquet(df_requete_22,C1.getUrlHdfsParquet("22"))
   }
   def executeQuery23(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame): Unit = {
     val df_requete_23 = data_frame_result.Requete_23(output_full)
@@ -363,6 +434,9 @@ object Main
     println("REQUETE 23 ")
     df_requete_23.show()
     df_requete_23.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_23,C1.getUrlHdfsCSV("23"))
+    utils.writeToParquet(df_requete_23,C1.getUrlHdfsParquet("23"))
   }
   def executeQuery24(spark:SparkSession,hadoop_user:String,utils:Utils,data_frame_result:DataFrameResult,output_full:DataFrame,country_classes:DataFrame): Unit = {
     val df_requete_24_bonus = data_frame_result.Requete_24_bonus(output_full,country_classes)
@@ -371,6 +445,9 @@ object Main
     println("REQUETE 24_bonus ")
     print(df_requete_24_bonus.select("description").head().get(0))
     df_requete_24_bonus.printSchema()
+    val C1 = new Constants(hadoop_user) 
+    utils.writeToCSV(df_requete_24_bonus,C1.getUrlHdfsCSV("24"))
+    utils.writeToParquet(df_requete_24_bonus,C1.getUrlHdfsParquet("24"))
   }
 
  
