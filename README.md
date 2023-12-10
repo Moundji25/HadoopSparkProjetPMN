@@ -12,7 +12,7 @@
 - if there's a problem in execution it's possible to directly execute the 'spark_run.sh' file with 2 parameters (user in the hadoop clusters , the jar file)
   
 ## Dependecies 
-  scala = "2.12.13"
+  scala = "2.12.13" \n
   spark-core = "3.2.0"
   spark-sql = "3.2.0"
   sbt 
