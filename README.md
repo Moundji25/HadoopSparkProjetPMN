@@ -1,4 +1,4 @@
-# HadoopSparkProjetPMN
+# HadoopSparkProjet
 ## This repository contains :
 
 - 'Code' folder: that contains a sbt structure of a scala spark project
